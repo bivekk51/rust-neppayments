@@ -60,6 +60,7 @@ Initiates a payment with eSewa and returns the payment redirect URL.
 pub async fn pay_with_esewa(
     request: EsewaPaymentRequest,
     secret_key: &str,
+    env: EsewaEnvironment,
 ) -> Result<String, PaymentError>
 ```
 
@@ -86,13 +87,13 @@ let request = EsewaPaymentRequest {
     signed_field_names: "total_amount,transaction_uuid,product_code".to_string(),
 };
 
-let url = pay_with_esewa(request, "8gBm/:&EnhH.1/q").await?;
+let url = pay_with_esewa(request, "8gBm/:&EnhH.1/q", EsewaEnvironment::Sandbox).await?;
 // Redirect user to `url`
 ```
 
 **Error Handling:**
 ```rust
-match pay_with_esewa(request, secret_key).await {
+match pay_with_esewa(request, secret_key, EsewaEnvironment::Sandbox).await {
     Ok(url) => {
         // Success - redirect user
     }

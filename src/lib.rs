@@ -10,7 +10,7 @@
 //!
 //! ## Example
 //! ```rust,no_run
-//! # use rustpayment::{pay_with_esewa, EsewaPaymentRequest};
+//! # use rustpayment::{pay_with_esewa, EsewaPaymentRequest, EsewaEnvironment};
 //! # async fn example() {
 //! let request = EsewaPaymentRequest {
 //!     amount: "100".to_string(),
@@ -27,7 +27,7 @@
 //! 
 //! let secret_key = "8gBm/:&EnhH.1/q";
 //! 
-//! match pay_with_esewa(request, secret_key).await {
+//! match pay_with_esewa(request, secret_key, EsewaEnvironment::Sandbox).await {
 //!     Ok(url) => println!("Redirect to: {}", url),
 //!     Err(e) => eprintln!("Payment error: {}", e),
 //! }
@@ -81,6 +81,15 @@ pub enum PaymentError {
     InvalidResponse(String),
     SignatureError(String),
     DecodeError(String),
+}
+
+/// Which eSewa environment to use for requests
+#[derive(Debug, Clone, Copy)]
+pub enum EsewaEnvironment {
+    /// Use the eSewa RC / sandbox endpoint (testing)
+    Sandbox,
+    /// Use the production eSewa endpoint (real-world)
+    Production,
 }
 
 impl std::fmt::Display for PaymentError {
@@ -144,7 +153,7 @@ pub fn generate_signature(
 ///
 /// ## Example
 /// ```rust,no_run
-/// # use rustpayment::{pay_with_esewa, EsewaPaymentRequest};
+/// # use rustpayment::{pay_with_esewa, EsewaPaymentRequest, EsewaEnvironment};
 /// # async fn example() {
 /// let request = EsewaPaymentRequest {
 ///     amount: "100".to_string(),
@@ -159,7 +168,7 @@ pub fn generate_signature(
 ///     signed_field_names: "total_amount,transaction_uuid,product_code".to_string(),
 /// };
 /// 
-/// match pay_with_esewa(request, "8gBm/:&EnhH.1/q").await {
+/// match pay_with_esewa(request, "8gBm/:&EnhH.1/q", EsewaEnvironment::Sandbox).await {
 ///     Ok(url) => println!("Redirect to: {}", url),
 ///     Err(e) => eprintln!("Error: {}", e),
 /// }
@@ -168,6 +177,7 @@ pub fn generate_signature(
 pub async fn pay_with_esewa(
     request: EsewaPaymentRequest,
     secret_key: &str,
+    env: EsewaEnvironment,
 ) -> Result<String, PaymentError> {
     // Generate signature
     let signature = generate_signature(
@@ -194,7 +204,11 @@ pub async fn pay_with_esewa(
 
     // Send POST request
     let client = Client::new();
-    let url = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+    // Choose endpoint based on environment
+    let url = match env {
+        EsewaEnvironment::Sandbox => "https://rc-epay.esewa.com.np/api/epay/main/v2/form",
+        EsewaEnvironment::Production => "https://epay.esewa.com.np/api/epay/main/v2/form",
+    };
 
     let response = client
         .post(url)

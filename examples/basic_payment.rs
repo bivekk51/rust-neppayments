@@ -2,7 +2,7 @@
 //! 
 //! Run with: cargo run --example basic_payment
 
-use rustpayment::{generate_transaction_uuid, pay_with_esewa, EsewaPaymentRequest};
+use rustpayment::{generate_transaction_uuid, pay_with_esewa, EsewaPaymentRequest, EsewaEnvironment};
 
 #[tokio::main]
 async fn main() {
@@ -26,8 +26,8 @@ async fn main() {
     println!("Initiating payment for amount: {}", request.total_amount);
     println!("Transaction UUID: {}", request.transaction_uuid);
 
-    // Initiate payment
-    match pay_with_esewa(request, secret_key).await {
+    // Initiate payment (Sandbox by default). For production use `EsewaEnvironment::Production`.
+    match pay_with_esewa(request, secret_key, EsewaEnvironment::Sandbox).await {
         Ok(payment_url) => {
             println!("\n Payment initiated successfully!");
             println!("Redirect user to: {}", payment_url);

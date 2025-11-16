@@ -29,7 +29,7 @@ println!("Signature: {}", signature);
 ### 2. Initiate Payment
 
 ```rust
-use rustpayment::{pay_with_esewa, generate_transaction_uuid, EsewaPaymentRequest};
+use rustpayment::{pay_with_esewa, generate_transaction_uuid, EsewaPaymentRequest, EsewaEnvironment};
 
 #[tokio::main]
 async fn main() {
@@ -46,7 +46,7 @@ async fn main() {
         signed_field_names: "total_amount,transaction_uuid,product_code".to_string(),
     };
     
-    match pay_with_esewa(request, "8gBm/:&EnhH.1/q").await {
+    match pay_with_esewa(request, "8gBm/:&EnhH.1/q", EsewaEnvironment::Sandbox).await {
         Ok(url) => println!("Redirect to: {}", url),
         Err(e) => eprintln!("Error: {}", e),
     }

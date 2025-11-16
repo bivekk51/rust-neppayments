@@ -31,7 +31,8 @@ use rustpayment::{
     generate_signature, 
     validate_esewa_response,
     generate_transaction_uuid,
-    EsewaPaymentRequest
+    EsewaPaymentRequest,
+    EsewaEnvironment,
 };
 
 #[tokio::main]
@@ -53,8 +54,8 @@ async fn main() {
         signed_field_names: "total_amount,transaction_uuid,product_code".to_string(),
     };
     
-    // Initiate payment
-    match pay_with_esewa(request, secret_key).await {
+    // Initiate payment (use `EsewaEnvironment::Production` for real integration)
+    match pay_with_esewa(request, secret_key, EsewaEnvironment::Sandbox).await {
         Ok(payment_url) => {
             println!("Redirect user to: {}", payment_url);
         }
@@ -96,7 +97,7 @@ async fn initiate_payment() -> impl Responder {
         signed_field_names: "total_amount,transaction_uuid,product_code".to_string(),
     };
 
-    match pay_with_esewa(request, SECRET_KEY).await {
+    match pay_with_esewa(request, SECRET_KEY, EsewaEnvironment::Sandbox).await {
         Ok(payment_url) => HttpResponse::Found()
             .append_header(("Location", payment_url))
             .finish(),
