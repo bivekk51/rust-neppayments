@@ -415,7 +415,7 @@ MIT License - See LICENSE file for details
 ## Support
 
 For issues and questions:
-- GitHub Issues: [Your Repository URL]
+- GitHub Issues: https://github.com/bivekk51/rust-neppayments
 - eSewa Documentation: https://developer.esewa.com.np/
 
 ## Changelog

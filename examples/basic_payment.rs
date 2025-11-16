@@ -7,7 +7,7 @@ use rustpayment::{generate_transaction_uuid, pay_with_esewa, EsewaPaymentRequest
 #[tokio::main]
 async fn main() {
     // eSewa test credentials
-    let secret_key = "8gBm/:&EnhH.1/q";
+    let secret_key = "8gBm/:&EnhH.1/q";//esewa recommended test secret key
 
     // Create a payment request
     let request = EsewaPaymentRequest {
