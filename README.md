@@ -4,12 +4,12 @@ A Rust library for integrating eSewa payment gateway into your applications. Thi
 
 ## Features
 
-- 🔐 **HMAC-SHA256 Signature Generation** - Secure payment authentication
-- 💳 **Payment Initialization** - Easy integration with eSewa payment gateway
-- ✅ **Response Validation** - Automatic decoding and signature verification
-- 🧪 **Well-Tested** - Comprehensive unit and integration tests
-- 📦 **Zero Configuration** - Works out of the box with sensible defaults
-- 🔄 **Async Support** - Built with `tokio` and `reqwest` for async operations
+-  **HMAC-SHA256 Signature Generation** - Secure payment authentication
+-  **Payment Initialization** - Easy integration with eSewa payment gateway
+-  **Response Validation** - Automatic decoding and signature verification
+-  **Well-Tested** - Comprehensive unit and integration tests
+-  **Zero Configuration** - Works out of the box with sensible defaults
+-  **Async Support** - Built with `tokio` and `reqwest` for async operations
 
 ## Installation
 
@@ -316,11 +316,11 @@ cargo test --test integration_tests
 ### Test Coverage
 
 The library includes:
-- ✅ Unit tests for signature generation
-- ✅ UUID generation and uniqueness tests
-- ✅ Response validation tests
-- ✅ Serialization/deserialization tests
-- ✅ Error handling tests
+-  Unit tests for signature generation
+-  UUID generation and uniqueness tests
+-  Response validation tests
+-  Serialization/deserialization tests
+-  Error handling tests
 
 ## Example Project
 
@@ -428,4 +428,4 @@ For issues and questions:
 
 ---
 
-Made with ❤️ for the Rust community
+Made with  for the Rust community

@@ -2,10 +2,10 @@
 name = "rustpayment"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Bivek Nepal <nepalbivek08@gmail.com>"]
 description = "A Rust library for integrating eSewa payment gateway - supports payment initiation, signature generation, and response validation"
 license = "MIT"
-repository = "https://github.com/yourusername/rustpayment"
+repository = "https://github.com/bivekk51/rust-neppayments.git"
 keywords = ["esewa", "payment", "gateway", "nepal", "fintech"]
 categories = ["api-bindings", "web-programming"]
 readme = "README.md"

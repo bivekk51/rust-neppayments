@@ -29,11 +29,11 @@ async fn main() {
     // Initiate payment
     match pay_with_esewa(request, secret_key).await {
         Ok(payment_url) => {
-            println!("\n✅ Payment initiated successfully!");
+            println!("\n Payment initiated successfully!");
             println!("Redirect user to: {}", payment_url);
         }
         Err(e) => {
-            eprintln!("\n❌ Payment error: {}", e);
+            eprintln!("\n Payment error: {}", e);
         }
     }
 }

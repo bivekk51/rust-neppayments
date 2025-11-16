@@ -39,7 +39,7 @@ fn main() {
     // Validate the response
     match validate_esewa_response(&encoded, secret_key) {
         Ok(result) => {
-            println!("✅ Validation successful!\n");
+            println!(" Validation successful!\n");
             println!("Signature Valid: {}", result.signature_valid);
             println!("Transaction Code: {}", result.response.transaction_code);
             println!("Status: {}", result.response.status);
@@ -47,13 +47,13 @@ fn main() {
             println!("UUID: {}", result.response.transaction_uuid);
 
             if result.signature_valid {
-                println!("\n✅ Payment verified - you can process this order!");
+                println!("\n Payment verified - you can process this order!");
             } else {
-                println!("\n⚠️  Warning: Invalid signature - do not process!");
+                println!("\n  Warning: Invalid signature - do not process!");
             }
         }
         Err(e) => {
-            eprintln!("❌ Validation error: {}", e);
+            eprintln!(" Validation error: {}", e);
         }
     }
 
@@ -69,14 +69,14 @@ fn main() {
     match validate_esewa_response(&encoded, secret_key) {
         Ok(result) => {
             if result.signature_valid {
-                println!("⚠️  Signature incorrectly validated as valid!");
+                println!("  Signature incorrectly validated as valid!");
             } else {
-                println!("✅ Invalid signature correctly detected!");
+                println!(" Invalid signature correctly detected!");
                 println!("   Do NOT process this payment.");
             }
         }
         Err(e) => {
-            eprintln!("❌ Validation error: {}", e);
+            eprintln!(" Validation error: {}", e);
         }
     }
 }
