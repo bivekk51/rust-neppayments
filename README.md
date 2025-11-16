@@ -396,7 +396,6 @@ match pay_with_esewa(request, secret_key).await {
 - `hmac` & `sha2` - HMAC-SHA256 signature generation
 - `base64` - Base64 encoding/decoding
 - `serde` & `serde_json` - JSON serialization
-- `actix-web` - Web framework (example only)
 - `rand` - Random UUID generation
 
 ## Contributing
