@@ -41,3 +41,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More payment status options
 - Retry logic for failed requests
 - Payment amount validation helpers
+
+## [0.1.1] - 2025-11-16
+
+### Changed
+- Refactor: moved implementation into `src/esewa.rs` and made `src/lib.rs` a thin re-export module to preserve the public API.
+- Packaging: removed binary entry so crate is library-first (kept example server in `examples/` if present).
+
+### Fixed
+- Ensure doctests and unit/integration tests pass after reorganization.

@@ -1,6 +1,6 @@
 [package]
 name = "rustpayment"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Bivek Nepal <nepalbivek08@gmail.com>"]
 description = "A Rust library for integrating eSewa payment gateway - supports payment initiation, signature generation, and response validation"
